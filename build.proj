@@ -28,7 +28,7 @@
 		                                $(ProjectRoot)samples\OpenIdOfflineProvider\bin\$(Configuration)\OpenIdOfflineProvider.exe" />
 	</ItemGroup>
 
-	<Target Name="Clean" DependsOnTargets="CleanDocumentation;UnpublishSamples;UnpublishDocumentation">
+	<Target Name="Clean" DependsOnTargets="CleanDocumentation;">
 		<MSBuild Projects="$(SolutionPath)" Targets="Clean" />
 		<ItemGroup>
 			<DirtyDirectories Include="
@@ -181,7 +181,7 @@
 			<TopLevelVSProjectTemplates Include="@(VSProjectTemplates)" Condition="'%(RootDir)%(Directory)' == '$(ProjectTemplatesLayoutPath)'" />
 
 			<!-- Include the template icon -->
-			<ProjectTemplatesSource Include="$(ProjectRoot)doc\logo\favicon.ico" />
+			<ProjectTemplatesSource Include="$(ProjectRoot)doc\logo\DotNetOpenAuth.ico" />
 			<ProjectTemplatesLayout Include="$(ProjectTemplatesLayoutPath)__TemplateIcon.ico" />
 
 			<!-- Add external libraries -->
@@ -274,6 +274,7 @@
 	</Target>
 
 	<Target Name="vsi" DependsOnTargets="ProjectTemplates">
+		<Message Text="Creating VSI in $(ProjectTemplatesLayoutPath)" Importance="High"/>
 		<ItemGroup>
 			<ProjectTemplateVsiContents Include="
 																	$(ProjectTemplatesLayoutPath)*.vscontent;
@@ -425,4 +426,9 @@
 	<Target Name="Nightly" DependsOnTargets="Drop;Tools;PublishSamples;PublishDocumentation">
 
 	</Target>
+
+  <Target Name="MSI" DependsOnTargets="DropLayout">
+	<Message Text="Creating MSI for $(DropDirectoryNoSlash)" Importance="High" />
+    <MSBuild Projects="$(ProjectRoot)src\DotNetOpenAuth.Installer\DotNetOpenAuth.Installer.wixproj" Properties="DropDir=$(DropDirectoryNoSlash);BuildVersion=$(BuildVersion);ProductName=$(ProductName)" />
+  </Target>
 </Project>
