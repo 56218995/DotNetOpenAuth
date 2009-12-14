@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SampleSite.master.cs"
+    Inherits="DotNetOpenAuth.Samples.master.SampleSite" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>DotNetOpenAuth Samples</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wrap">
+        <div id="topbar">
+            <h1>
+                dotnetopenauth&nbsp;<span>SAMPLES directory</span></h1>
+        </div>
+        <div id="header">
+            <div id="menu">
+                <ul>
+                    <li class="active"><a href="~/" runat="server">Welcome Page</a></li>
+                    <li><a href="~/OpenIDSamples.aspx" runat="server">OpenID Samples</a></li>
+                    <li><a href="~/OAuthSamples.aspx" runat="server">OAuth Samples</a></li>
+                    <li><a href="~/OtherSamples.aspx" runat="server">Other Samples</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="mainpage">
+            <div id="content">
+                <% if (ShowRelatedLinks)
+ {%>
+                <div id="quicklinks">
+                    <span class="qltop">&nbsp;</span>
+                    <asp:ContentPlaceHolder ID="RelatedLinksContentHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <span class="qlbttm">&nbsp;</span>
+                </div>
+                <%
+ }%>
+                <asp:ContentPlaceHolder ID="MainContentHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="sidebar">
+                <div class="sidebartop">
+                    <h2>
+                        Support Materials</h2>
+                </div>
+                <div class="sidebarmain">
+                    <ul>
+                        <li><a href="http://DotNetOpenAuth.net">DotNetOpenAuth.Net</a></li>
+                        <li><a href="http://DotNetOpenAuth.net:8080">WIKI</a></li>
+                        <li><a href="http://teamcity.DotNetOpenAuth.net">BuildServer</a></li>
+                    </ul>
+                </div>
+                <p class="clear2">
+                    &nbsp;</p>
+                <span class="sidebarbottom">&nbsp;</span>
+            </div>
+            <p class="clear">
+            </p>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footercontent">
+            <p>
+                DotNetOpenAuth &copy; All rights reserved | Valid XHTML | <a href="http://DotNetOpenAuth.Net">DotNetOpenAuth.Net</a>
+            </p>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
