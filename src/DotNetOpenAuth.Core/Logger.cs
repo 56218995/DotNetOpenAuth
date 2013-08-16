@@ -6,11 +6,11 @@
 
 namespace DotNetOpenAuth {
 	using System;
-	using System.Diagnostics.Contracts;
 	using System.Globalization;
 	using DotNetOpenAuth.Loggers;
 	using DotNetOpenAuth.Messaging;
 	using log4net.Core;
+	using Validation;
 
 	/// <summary>
 	/// A general logger for the entire DotNetOpenAuth library.
@@ -75,11 +75,6 @@ namespace DotNetOpenAuth {
 		private static readonly ILog oauth = Create("DotNetOpenAuth.OAuth");
 
 		/// <summary>
-		/// Backing field for the <see cref="InfoCard"/> property.
-		/// </summary>
-		private static readonly ILog infocard = Create("DotNetOpenAuth.InfoCard");
-
-		/// <summary>
 		/// Gets the logger for general library logging.
 		/// </summary>
 		internal static ILog Library { get { return library; } }
@@ -129,11 +124,6 @@ namespace DotNetOpenAuth {
 		/// </summary>
 		internal static ILog OAuth { get { return oauth; } }
 
-		/// <summary>
-		/// Gets the logger for high-level InfoCard events.
-		/// </summary>
-		internal static ILog InfoCard { get { return infocard; } }
-
 		#endregion
 
 		/// <summary>
@@ -177,7 +167,7 @@ namespace DotNetOpenAuth {
 		/// <param name="name">The name of the log to initialize.</param>
 		/// <returns>The <see cref="ILog"/> instance of the logger to use.</returns>
 		private static ILog InitializeFacade(string name) {
-			ILog result = Log4NetLogger.Initialize(name) ?? TraceLogger.Initialize(name) ?? NoOpLogger.Initialize();
+			ILog result = Log4NetLogger.Initialize(name) ?? NLogLogger.Initialize(name) ?? TraceLogger.Initialize(name) ?? NoOpLogger.Initialize();
 			return result;
 		}
 	}
